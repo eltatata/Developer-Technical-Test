@@ -21,6 +21,8 @@ public class User {
   private String name;
   private String email;
   private String address;
+  @Column(precision = 18, scale = 10)
   private BigDecimal latitude;
+  @Column(precision = 18, scale = 10)
   private BigDecimal longitude;
 }
