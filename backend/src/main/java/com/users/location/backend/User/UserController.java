@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -27,8 +26,8 @@ public class UserController {
 
   @GetMapping("/{id}")
   public ResponseEntity<User> getUserById(@PathVariable Long id) {
-    Optional<User> user = userService.getUserById(id);
-    return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    User user = userService.getUserById(id);
+    return ResponseEntity.ok(user);
   }
 
   @PostMapping
@@ -40,12 +39,12 @@ public class UserController {
 
   @PutMapping("/{id}")
   public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
-      User updatedUser = userService.updateUser(id, userDTO);
-      return ResponseEntity.ok(updatedUser);
+    User updatedUser = userService.updateUser(id, userDTO);
+    return ResponseEntity.ok(updatedUser);
   }
 
   @DeleteMapping("/{id}")
-  public  ResponseEntity<User> deleteUser(@PathVariable Long id) {
+  public ResponseEntity<User> deleteUser(@PathVariable Long id) {
     userService.deleteUser(id);
     return ResponseEntity.noContent().build();
   }
