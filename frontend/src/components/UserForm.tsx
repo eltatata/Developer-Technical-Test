@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -37,12 +39,23 @@ const geocodeAddress = async (address: string) => {
   return null;
 };
 
-export default function UserForm() {
+interface UserFormProps {
+  id?: string;
+  user?: {
+    name: string;
+    email: string;
+    address: string;
+  };
+}
+
+export default function UserForm({ id, user }: UserFormProps) {
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: user || {
       name: "",
       email: "",
       address: "",
@@ -57,6 +70,36 @@ export default function UserForm() {
       const coordinates = await geocodeAddress(address);
 
       console.log(name, email, address, coordinates);
+
+      if (coordinates) {
+        const data = {
+          name,
+          email,
+          address,
+          latitude: coordinates.lat,
+          longitude: coordinates.lon,
+        };
+
+        if (id) {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+        } else {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+        }
+
+        router.refresh();
+      }
     } catch (error) {
       console.log(error);
     } finally {

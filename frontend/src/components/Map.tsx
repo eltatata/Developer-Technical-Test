@@ -6,10 +6,14 @@ import MarkerShadow from '../../node_modules/leaflet/dist/images/marker-shadow.p
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-export default function Map() {
+interface MapProps {
+  position: [number, number]
+}
+
+export default function Map({ position }: MapProps) {
   return (
     <MapContainer
-      center={[51.505, -0.09]}
+      center={position}
       zoom={13}
       scrollWheelZoom={false}
       className='rounded-lg'
@@ -28,7 +32,7 @@ export default function Map() {
           shadowUrl: MarkerShadow.src,
           shadowSize: [41, 41],
         })
-      } position={[51.505, -0.09]}>
+      } position={position}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
