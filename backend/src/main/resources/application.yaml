@@ -13,3 +13,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+frontend:
+  url: ${FRONTEND_URL}
