@@ -69,8 +69,6 @@ export default function UserForm({ id, user }: UserFormProps) {
       const { name, email, address } = values;
       const coordinates = await geocodeAddress(address);
 
-      console.log(name, email, address, coordinates);
-
       if (coordinates) {
         const data = {
           name,
@@ -99,6 +97,7 @@ export default function UserForm({ id, user }: UserFormProps) {
         }
 
         router.refresh();
+        form.reset();
       }
     } catch (error) {
       console.log(error);
