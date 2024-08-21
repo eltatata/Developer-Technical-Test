@@ -2,7 +2,9 @@ import UserForm from "@/components/UserForm";
 import UserList from "@/components/UserList";
 
 const getUsers = async () => {
-  const res = await fetch(`${process.env.API_URL}/users`);
+  const res = await fetch(`${process.env.API_URL}/users`, {
+    cache: "no-store",
+  });
   const data = await res.json();
   return data;
 }

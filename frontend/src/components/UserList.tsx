@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Input } from "./ui/input";
 
-
 interface UserListProps {
   users: User[];
 }
