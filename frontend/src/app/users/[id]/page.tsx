@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import UserForm from '@/components/UserForm'
 import ButtonDeleteUser from '@/components/ButtonDeleteUser'
+import Link from 'next/link'
 const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 
 const getSingleUser = async (id: string) => {
@@ -21,7 +22,15 @@ export default async function SingleUserPage({ params }: SingleUserPageProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-7xl mx-auto gap-20 p-6">
       <div className='space-y-4'>
-        <ButtonDeleteUser id={params.id} />
+        <div className='flex justify-between'>
+          <Link
+            href='/'
+            className='border border-gray-300 rounded-md px-4 py-2 hover:bg-gray-100'
+          >
+            Back
+          </Link>
+          <ButtonDeleteUser id={params.id} />
+        </div>
         <UserForm
           id={params.id}
           user={user}
