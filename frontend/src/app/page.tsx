@@ -13,7 +13,7 @@ export default async function Home() {
   const users = await getUsers();
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 w-full max-w-7xl mx-auto gap-20 p-6">
+    <main className="grid grid-cols-1 md:grid-cols-2 w-full max-w-7xl mx-auto gap-10 p-6">
       <UserList users={users} />
       <UserForm />
     </main>

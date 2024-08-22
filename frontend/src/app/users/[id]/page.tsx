@@ -5,7 +5,9 @@ import Link from 'next/link'
 const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 
 const getSingleUser = async (id: string) => {
-  const res = await fetch(`${process.env.API_URL}/users/${id}`)
+  const res = await fetch(`${process.env.API_URL}/users/${id}`, {
+    cache: "no-store"
+  })
   const data = await res.json()
   return data
 }
@@ -20,7 +22,7 @@ export default async function SingleUserPage({ params }: SingleUserPageProps) {
   const user = await getSingleUser(params.id)
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-7xl mx-auto gap-20 p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-7xl mx-auto gap-10 p-6">
       <div className='space-y-4'>
         <div className='flex justify-between'>
           <Link

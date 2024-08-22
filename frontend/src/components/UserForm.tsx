@@ -86,6 +86,8 @@ export default function UserForm({ id, user }: UserFormProps) {
             },
             body: JSON.stringify(data),
           });
+
+          window.location.reload();
         } else {
           await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
             method: "POST",
@@ -94,10 +96,10 @@ export default function UserForm({ id, user }: UserFormProps) {
             },
             body: JSON.stringify(data),
           });
-        }
 
-        router.refresh();
-        form.reset();
+          router.refresh();
+          form.reset();
+        }
       }
     } catch (error) {
       console.log(error);
