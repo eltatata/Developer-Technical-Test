@@ -15,8 +15,11 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 @Validated
 public class UserController {
-  @Autowired
-  UserService userService;
+  private final UserService userService;
+
+  public UserController(@Autowired UserService userService) {
+    this.userService = userService;
+  }
 
   @GetMapping
   public ResponseEntity<List<User>> getAllUsers() {
