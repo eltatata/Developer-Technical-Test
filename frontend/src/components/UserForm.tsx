@@ -45,6 +45,7 @@ interface UserFormProps {
     name: string;
     email: string;
     address: string;
+    createdAt: Date;
   };
 }
 
@@ -114,7 +115,17 @@ export default function UserForm({ id, user }: UserFormProps) {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="space-y-4"
       >
-        <h2 className="text-2xl font-bold">Add new user</h2>
+        {!id ?
+          (<h2 className="text-2xl font-bold">Add new user</h2>) :
+          (
+            <>
+              <h2 className="text-2xl font-bold">Edit user</h2>
+              <p>
+                User createdAt: <b>{user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}</b>
+              </p>
+            </>
+          )
+        }
         <FormField
           control={form.control}
           name="name"

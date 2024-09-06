@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Data
 @Builder
@@ -25,4 +28,7 @@ public class User {
   private BigDecimal latitude;
   @Column(precision = 18, scale = 10)
   private BigDecimal longitude;
+  @CreationTimestamp
+  @Column(name = "created_at", updatable = false)
+  private LocalDateTime createdAt;
 }
