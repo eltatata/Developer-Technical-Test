@@ -1,4 +1,4 @@
-package com.users.location.backend.User.DTO;
+package com.users.location.backend.user.dtos;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class UserCreateDTO {
   @NotBlank(message = "Name cannot be empty")
   @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
   private String name;

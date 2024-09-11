@@ -1,9 +1,9 @@
-package com.users.location.backend.User;
+package com.users.location.backend.user;
 
-import com.users.location.backend.Exceptions.BadRequest;
-import com.users.location.backend.Exceptions.NotFound;
-import com.users.location.backend.User.DTO.UserDTO;
-import com.users.location.backend.User.Entities.User;
+import com.users.location.backend.exceptions.BadRequest;
+import com.users.location.backend.exceptions.NotFound;
+import com.users.location.backend.user.dtos.UserCreateDTO;
+import com.users.location.backend.user.entities.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +25,7 @@ public class UserService {
     return userRepository.findById(id).orElseThrow(() -> new NotFound("User not found"));
   }
 
-  public User createUser(UserDTO userDTO) {
+  public User createUser(UserCreateDTO userDTO) {
     if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
       throw new BadRequest("A user with the provided email already exists.");
     }
@@ -40,7 +40,7 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  public User updateUser(Long id, UserDTO userDTO) {
+  public User updateUser(Long id, UserCreateDTO userDTO) {
     User user = userRepository.findById(id).orElseThrow(() -> new NotFound("User not found"));
     Optional<User> existingUserWithEmail = userRepository.findByEmail(userDTO.getEmail());
     if (existingUserWithEmail.isPresent() && !existingUserWithEmail.get().getId().equals(id)) {

@@ -1,7 +1,5 @@
-package com.users.location.backend.User;
+package com.users.location.backend.user;
 
-import com.users.location.backend.User.DTO.UserDTO;
-import com.users.location.backend.User.Entities.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -9,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import com.users.location.backend.user.dtos.UserCreateDTO;
+import com.users.location.backend.user.entities.User;
 
 import java.util.List;
 
@@ -33,13 +34,13 @@ public class UserController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) {
+  public ResponseEntity<User> createUser(@Valid @RequestBody UserCreateDTO userDTO) {
     User newUser = userService.createUser(userDTO);
     return ResponseEntity.ok(newUser);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
+  public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody UserCreateDTO userDTO) {
     User updatedUser = userService.updateUser(id, userDTO);
     return ResponseEntity.ok(updatedUser);
   }

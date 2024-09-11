@@ -1,4 +1,4 @@
-package com.users.location.backend.Config;
+package com.users.location.backend.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

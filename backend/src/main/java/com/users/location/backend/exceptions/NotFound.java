@@ -1,4 +1,4 @@
-package com.users.location.backend.Exceptions;
+package com.users.location.backend.exceptions;
 
 public class NotFound extends RuntimeException {
   public NotFound(String message) {
