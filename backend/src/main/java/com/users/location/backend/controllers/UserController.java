@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.users.location.backend.dtos.UserCreateDTO;
 import com.users.location.backend.entities.User;
-import com.users.location.backend.services.UserService;
+import com.users.location.backend.services.UserServiceImpl;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 public class UserController {
-  private final UserService userService;
+  private final UserServiceImpl userService;
 
   @GetMapping
   public ResponseEntity<List<User>> getAllUsers() {
