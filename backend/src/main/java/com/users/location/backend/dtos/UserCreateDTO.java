@@ -1,4 +1,4 @@
-package com.users.location.backend.user.dtos;
+package com.users.location.backend.dtos;
 
 import java.math.BigDecimal;
 

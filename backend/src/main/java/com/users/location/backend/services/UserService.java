@@ -1,9 +1,10 @@
-package com.users.location.backend.user;
+package com.users.location.backend.services;
 
+import com.users.location.backend.dtos.UserCreateDTO;
+import com.users.location.backend.entities.User;
 import com.users.location.backend.exceptions.BadRequest;
 import com.users.location.backend.exceptions.NotFound;
-import com.users.location.backend.user.dtos.UserCreateDTO;
-import com.users.location.backend.user.entities.User;
+import com.users.location.backend.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

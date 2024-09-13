@@ -1,4 +1,4 @@
-package com.users.location.backend.user;
+package com.users.location.backend.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.users.location.backend.user.dtos.UserCreateDTO;
-import com.users.location.backend.user.entities.User;
+import com.users.location.backend.dtos.UserCreateDTO;
+import com.users.location.backend.entities.User;
+import com.users.location.backend.services.UserService;
 
 import java.util.List;
 
